@@ -35,3 +35,51 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  justify-content:flex-end;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.w-100 {
+  width: 100vw;
+}
+
+.h-100 {
+  height: 100vh;
+} 
+
+.bgr {
+  background-color: red;
+}
+
+.hero img {
+  width: 100vw;
+  padding: 0 2rem;
+}
+
+
+
