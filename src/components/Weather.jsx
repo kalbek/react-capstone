@@ -51,7 +51,7 @@ const Weather = () => {
               <div className="hero-image  g-2-2 absolute flex-column">
                 <img src="/images/chemical.jpg" alt="" />
                 <div className="temp-text">
-                  <p>Get your weather data instantly.</p>
+                  <p>Get component concentration.</p>
                 </div>
               </div>
               <div className="hero-image  g-2-3 absolute flex-column">

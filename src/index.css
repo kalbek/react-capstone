@@ -97,6 +97,10 @@ code {
   font-size: 20px;
 }
 
+.logo img {
+  width: 55%;
+}
+
 .z-0 {
   z-index: 0;
 }

@@ -6,15 +6,17 @@ const Navigation = () => {
       <nav>
         <div className="flex-around w-100 fixed pt-1">
           <NavLink to="/">
-            <div className="logo">Logo</div>
+            <div className="logo">
+              <img src="/images/OpenWeatherLogo.png" alt="" />
+            </div>
           </NavLink>
           <div className="menus">
             <div className="flex gap-1">
               <NavLink to="/">
-                <div className="menu ptr">Menu 1</div>
+                <div className="menu ptr"></div>
               </NavLink>
               <NavLink to="/pollution-details">
-                <div className="menu ptr">Menu 2</div>
+                <div className="menu ptr">Pollution Details.</div>
               </NavLink>
             </div>
           </div>
@@ -25,4 +27,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-  
