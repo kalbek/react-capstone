@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navigation from "../pages/Navigation";
+import Navigation from "./Navigation";
 const Layout = () => (
   <>
     <Navigation />
