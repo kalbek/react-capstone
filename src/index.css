@@ -197,9 +197,108 @@ code {
   );
 }
 
-.one-stop p {
-  color: #fff;
+.coordinate-control {
+  position: absolute;
+  height: 74%;
+  width: 30%;
+  border: 2px solid whitesmoke;
+  border-radius: 2%;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/public/images/cool-bg.jpg");
+}
+
+.top-apis h3,
+.custom-coord label {
   font-size: 25px;
-  width: auto;
-  overflow: auto;
+  color: #003e81;
+  top: 8%;
+}
+
+.card {
+  top: 7%;
+  width: 99%;
+  height: 18%;
+  border: 2px solid white;
+  background-color: rgb(236, 76, 138);
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gap-p5 {
+  gap: 5px;
+}
+
+.custom-coord input,
+.custom-coord button {
+  width: 4rem;
+  height: 2.5rem;
+}
+
+.custom-coord input {
+  position: absolute;
+  font-size: 30px;
+}
+
+.gap-10 {
+  gap: 5rem;
+}
+
+.card p {
+  padding: 1rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: #003e81;
+}
+
+.see-pollution {
+  width: 0 auto;
+  height: 25%;
+  border-color: transparent;
+  padding: 0 40px;
+  font-size: 20px;
+  color: #003e81;
+  margin-left: 1rem;
+  border: 1px solid #003e81;
+  border-radius: 5px;
+}
+
+.see-pollution:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.see-pollution * {
+  font-size: 18px;
+  float: left;
+}
+
+.go {
+  background-color: #58a72c;
+  color: #fff;
+  font-size: 20px;
+}
+
+.go:hover {
+  scale: 1.2;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: #58a72c;
+  color: #fff;
+  font-size: 20px;
+}
+
+.custom-coord-title {
+  font-size: 25px;
+  color: #003e81;
+  font-weight: 700;
+  top: 8%;
+}
+
+.custom-card {
+  height: 12%;
 }

@@ -6,12 +6,18 @@ import { useEffect } from "react";
 
 const Weather = () => {
   const dispatch = useDispatch();
-  console.log("heloooooooooooooooooooo");
   const { weather } = useSelector((store) => store.weathers);
   console.log("weathers: ", weather);
   useEffect(() => {
     dispatch(getWeathers());
   }, []);
+
+  const topCoordinates = [
+    { coordinates: [50, 50] },
+    { coordinates: [60, 60] },
+    { coordinates: [70, 70] },
+    { coordinates: [80, 80] },
+  ];
   return (
     <>
       <div className="flex-centered z-0">
@@ -25,7 +31,42 @@ const Weather = () => {
                   <p>Get your weather data instantly.</p>
                 </div>
               </div>
-
+              <div className="coordinate-control relative gap-p5">
+                <div className="top-apis ">
+                  <h3>Top Coordinates</h3>
+                </div>
+                {topCoordinates.map((coord) => (
+                  <>
+                    <div className="card flex-column">
+                      <div className="flex">
+                        <p>X: {coord.coordinates[0]}</p>
+                        <p>Y: {coord.coordinates[1]}</p>
+                      </div>
+                      <button className="see-pollution">
+                        Pollution Details
+                      </button>
+                    </div>
+                  </>
+                ))}
+                <p className="custom-coord-title">Custom Coordinates</p>
+                <div className="card custom-card flex-column-centered">
+                  <div className="flex-column-centered custom-coord">
+                    <div className="flex gap-10 relative">
+                      <label htmlFor="x">
+                        X: &nbsp;
+                        <input id="x" type="text" />
+                      </label>
+                      <label htmlFor="x">
+                        Y: &nbsp;
+                        <input id="y" type="text" />
+                      </label>
+                      <button className="ptr go see-pollution flex-column-centered">
+                        GO
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="hero-image g-1-2 absolute flex-column">
                 <img src="/images/not-yours.jpg" alt="" />
                 <div className="temp-text">
