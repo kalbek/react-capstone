@@ -62,9 +62,10 @@ const PollutionDetails = () => {
                   {new Date(weather.list[0].dt * 1000).toDateString()}
                 </div>
                 <div className="aqi">
-                  AQI : &nbsp; 
+                  AQI : &nbsp;
                   <span>
-                    {weather.list[0].main.aqi},   &nbsp; Status is
+                    {weather.list[0].main.aqi}
+                    ,   &nbsp; Status is
                     &nbsp;
                   </span>
                   <>
@@ -86,37 +87,37 @@ const PollutionDetails = () => {
                   </p>
                   <p>
                     NO :
-                    ................................................... 
+                    ...................................................
                     <span>{weather.list[0].components.no}</span>
                   </p>
                   <p>
                     NO2:
-                    ................................................... 
+                    ...................................................
                     <span>{weather.list[0].components.no2}</span>
                   </p>
                   <p>
                     O3:
-                    ................................................... 
+                    ...................................................
                     <span>{weather.list[0].components.o3}</span>
                   </p>
                   <p>
                     SO2:
-                    .................................................. 
+                    ..................................................
                     <span>{weather.list[0].components.so2}</span>
                   </p>
                   <p>
                     PM2.5:
-                    .................................................. 
+                    ..................................................
                     <span>{weather.list[0].components.pm2_5}</span>
                   </p>
                   <p>
                     PM10:
-                    ................................................. 
+                    .................................................
                     <span>{weather.list[0].components.pm10}</span>
                   </p>
                   <p>
                     NH:
-                    ................................................. 
+                    .................................................
                     <span>{weather.list[0].components.nh3}</span>
                   </p>
                 </div>
