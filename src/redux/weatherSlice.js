@@ -13,7 +13,7 @@ const initialState = {
 
 export const getSampleData = createAsyncThunk('getSample', async (coord) => {
   const response = await axios(
-    `http://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.x}&lon=${coord.y}&appid=25df0065e0f7bc95dbc36a884ef43ee6`,
+    `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.x}&lon=${coord.y}&appid=25df0065e0f7bc95dbc36a884ef43ee6`,
   );
   return response.data;
 });

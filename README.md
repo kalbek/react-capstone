@@ -33,7 +33,7 @@
 > ReactJS, JSX, ReactRouter, Redux, ReduxThunk, React Testing Library
 
 ### Video Walkthrough <a name="walkthrough"></a>
-## [Link for Video Walkthrough](https://www.loom.com/share/b463164d58884faeadaad78c769dbd50)
+## [Link for Video Walkthrough](https://www.loom.com/share/61a61d3e9fd145eb9046aad2e3825e3b)
 
 ### Live Demo <a name="tech-stack"></a>
 
