@@ -6,6 +6,8 @@ const initialState = {
   weather: [],
   error: "",
   coords: {},
+  isLoading: false,
+  isSuccess: false,
 };
 
 export const getWeathers = createAsyncThunk("weather", async (coord) => {
@@ -37,14 +39,17 @@ const weatherSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getWeathers.pending, (state) => {
       state.isLoading = true;
+      state.isSuccess = false;
     });
     builder.addCase(getWeathers.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.isSuccess = true;
       state.weather = action.payload;
       state.coords = action.payload.coord;
-      console.log("yessssssssssssssss")
+      console.log("yessssssssssssssss");
     });
     builder.addCase(getWeathers.rejected, (state, action) => {
+      state.isSuccess = false;
       state.isLoading = false;
       state.error = action.payload;
     });

@@ -1,13 +1,14 @@
 import weatherSlice from "../redux/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getWeathers } from "../redux/weatherSlice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { setCoords } from "../redux/weatherSlice";
 
 import { useEffect, useState } from "react";
 
 const Weather = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [xCoor, setXCoor] = useState();
   const [yCoor, setYCoor] = useState();
 
@@ -30,7 +31,7 @@ const Weather = () => {
   ];
 
   function handleCoords(coords) {
-    console.log("yey")
+    console.log("yey");
     dispatch(getWeathers(coords));
   }
 
@@ -96,18 +97,20 @@ const Weather = () => {
                           type="text"
                         />
                       </label>
-                      <NavLink to="/pollution-details"></NavLink>
-                      <button
-                        className="ptr go see-pollution flex-column-centered"
+                      <NavLink
+                        to="/pollution-details"
                         onClick={() => {
                           handleCoords({
                             lat: xCoor,
                             lon: yCoor,
                           });
+                          // dispatch(navigate("/pollution-details"));
                         }}
                       >
-                        GO
-                      </button>
+                        <button className="ptr go see-pollution flex-column-centered">
+                          GO
+                        </button>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
