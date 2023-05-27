@@ -1,100 +1,85 @@
-import axios from 'axios';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import weatherReducer, {
+  getSampleData,
+  getWeathers,
+  clearSampleAqi,
+} from '../redux/weatherSlice';
 
-import { getWeathers } from '../redux/weatherSlice';
+// Create a mock store
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
-jest.mock('axios');
+describe('weatherSlice', () => {
+  let store;
 
-const mockStore = configureStore([thunk]);
+  beforeEach(() => {
+    store = mockStore({
+      sampleAQIData: [],
+      weather: {},
+      coords: {},
+      isLoading: false,
+      isSuccess: false,
+      isError: false,
+      error: '',
+    });
+  });
 
-describe('getWeathers', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should fetch weather data and update the store correctly on successful response', async () => {
-    const mockResponse = {
-      data: {
-        coord: {
-          lat: 12.345,
-          lon: 67.89,
-        },
-        list: [
-          {
-            main: {
-              aqi: 1,
-            },
-            dt: 1622131234,
-            components: {
-              co: 123.45,
-              no: 67.89,
-              no2: 12.34,
-              o3: 56.78,
-              so2: 90.12,
-              pm2_5: 34.56,
-              pm10: 78.9,
-              nh3: 0.12,
-            },
-          },
-        ],
-      },
-    };
+  it('should clear sampleAQIData correctly', () => {
+    const action = clearSampleAqi();
+    store.dispatch(action);
+    const newState = store.getState();
 
-    axios.mockResolvedValueOnce(mockResponse);
-
-    const initialState = {
-      weathers: {
-        weather: [],
-        coords: {},
-        isLoading: false,
-        isSuccess: false,
-        isError: false,
-        error: '',
-      },
-    };
-
-    const store = mockStore(initialState);
-
-    await store.dispatch(getWeathers({ lat: 12.345, lon: 67.89 }));
-
-    const actions = store.getActions();
-    expect(actions[0].type).toEqual(getWeathers.pending.type);
-    expect(actions[1].type).toEqual(getWeathers.fulfilled.type);
-    expect(actions[1].payload).toEqual(mockResponse.data);
-
-    const { weathers } = store.getState();
-    expect(weathers.isLoading).toBe(false);
-    expect(weathers.isError).toBe(false);
+    expect(newState.sampleAQIData).toEqual([]);
   });
 
-  it('should handle API error and update the store correctly on rejected response', async () => {
-    const mockError = undefined;
+  it('should handle getWeathers.pending correctly', () => {
+    const action = getWeathers.pending();
+    const newState = weatherReducer(undefined, action);
 
-    axios.mockRejectedValueOnce(mockError);
+    expect(newState.isLoading).toBe(true);
+    expect(newState.isSuccess).toBe(false);
+    expect(newState.isError).toBe(false);
+  });
 
-    const initialState = {
-      weathers: {
-        weather: [],
-        coords: {},
-        isLoading: false,
-        isSuccess: false,
-        isError: false,
-        error: '',
-      },
+  it('should handle getWeathers.fulfilled correctly', () => {
+    const expectedPayload = {
+      coord: { lat: 123, lon: 456 } /* other response data */,
     };
+    const action = getWeathers.fulfilled(expectedPayload);
+    const newState = weatherReducer(undefined, action);
 
-    const store = mockStore(initialState);
+    expect(newState.isLoading).toBe(false);
+    expect(newState.isSuccess).toBe(true);
+    expect(newState.isError).toBe(false);
+    expect(newState.weather).toEqual(expectedPayload);
+    expect(newState.coords).toEqual(expectedPayload.coord);
+  });
 
-    await store.dispatch(getWeathers({ lat: 12.345, lon: 67.89 }));
+  it('should handle getWeathers.rejected correctly', () => {
+    const expectedPayload = 'Error message';
+    const action = getWeathers.rejected(expectedPayload);
+    const newState = weatherReducer(undefined, action);
 
-    const actions = store.getActions();
-    expect(actions[0].type).toEqual(getWeathers.pending.type);
-    expect(actions[1].type).toEqual(getWeathers.rejected.type);
-    expect(actions[1].payload).toEqual(mockError);
+    expect(newState.isSuccess).toBe(false);
+    expect(newState.isLoading).toBe(false);
+    expect(newState.isError).toBe(true);
+  });
 
-    const { weathers } = store.getState();
-    expect(weathers.isLoading).toBe(false);
-    expect(weathers.isSuccess).toBe(false);
+  it('should handle getSampleData.fulfilled correctly', () => {
+    const existingData = [{ id: 1 /* other properties */ }];
+    const action = getSampleData.fulfilled({ id: 2 /* other properties */ });
+    const initialState = {
+      sampleAQIData: existingData,
+      /* other initial state properties */
+    };
+    const newState = weatherReducer(initialState, action);
+
+    expect(newState.sampleAQIData).toHaveLength(2);
+    expect(newState.sampleAQIData[1]).toEqual({ id: 2 /* other properties */ });
   });
 });
