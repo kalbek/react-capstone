@@ -4,6 +4,7 @@
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
+    - [Video Walkthrough](#walkthrough)
     - [Live Demo](#live-demo)
     - [Key Features](#key-features)
 - [💻 Getting Started](#getting-started)
@@ -30,6 +31,9 @@
 ### Tech Stack <a name="tech-stack"></a>
 
 > ReactJS, JSX, ReactRouter, Redux, ReduxThunk, React Testing Library
+
+### Video Walkthrough <a name="walkthrough"></a>
+## [Link for Video Walkthrough](https://www.loom.com/share/b463164d58884faeadaad78c769dbd50)
 
 ### Live Demo <a name="tech-stack"></a>
 
