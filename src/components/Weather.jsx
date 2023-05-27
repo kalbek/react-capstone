@@ -8,7 +8,9 @@ import { useEffect, useState } from "react";
 
 const Weather = () => {
   const dispatch = useDispatch();
-  const [coor, setCoor] = useState("");
+  const [xCoor, setXCoor] = useState();
+  const [yCoor, setYCoor] = useState();
+
   const { weather } = useSelector((store) => store.weathers);
   const { coords } = useSelector((store) => store.weathers);
   console.log("weathers: ", weather);
@@ -28,6 +30,7 @@ const Weather = () => {
   ];
 
   function handleCoords(coords) {
+    console.log("yey")
     dispatch(getWeathers(coords));
   }
 
@@ -77,17 +80,34 @@ const Weather = () => {
                     <div className="flex gap-10 relative">
                       <label htmlFor="x">
                         X: &nbsp;
-                        <input id="x" type="text" />
+                        <input
+                          value={xCoor}
+                          onChange={(e) => setXCoor(e.target.value)}
+                          id="x"
+                          type="text"
+                        />
                       </label>
                       <label htmlFor="x">
                         Y: &nbsp;
-                        <input id="y" type="text" />
+                        <input
+                          value={yCoor}
+                          onChange={(e) => setYCoor(e.target.value)}
+                          id="y"
+                          type="text"
+                        />
                       </label>
-                      <NavLink to="/pollution-details">
-                        <button className="ptr go see-pollution flex-column-centered">
-                          GO
-                        </button>
-                      </NavLink>
+                      <NavLink to="/pollution-details"></NavLink>
+                      <button
+                        className="ptr go see-pollution flex-column-centered"
+                        onClick={() => {
+                          handleCoords({
+                            lat: xCoor,
+                            lon: yCoor,
+                          });
+                        }}
+                      >
+                        GO
+                      </button>
                     </div>
                   </div>
                 </div>
