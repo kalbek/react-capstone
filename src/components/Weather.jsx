@@ -112,7 +112,7 @@ const Weather = () => {
             <div className="intro-content sample-intro">Sample Coordinates</div>
           </div>
           {/* display sample data form api. */}
-          <div className="flex-column-start w-100">
+          <div className="sample flex-column-start w-100">
             {sampleAQIData.map((data, index) => (
               <div key={data.id}>
                 <button
@@ -138,7 +138,7 @@ const Weather = () => {
                         <div className="aqi-status">
                           <p>
                             {' '}
-                            Air Quality Index
+                            Air Quality Index &nbsp;
                             {data.list[0].main.aqi}
                           </p>
                         </div>

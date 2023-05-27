@@ -22,7 +22,7 @@ const PollutionDetails = () => {
     <>
       <div className="main bg-primary flex-column-centered">
         <div className="main-intro flex-column-centered p-1 mt-30">
-          {isLoading && (
+          {isSuccess && (
             <>
               <div className="loading flex-column-centered">
                 <div className="flex">
@@ -65,8 +65,7 @@ const PollutionDetails = () => {
                   AQI : &nbsp;
                   <span>
                     {weather.list[0].main.aqi}
-                    ,   &nbsp; Status is
-                    &nbsp;
+                    , &nbsp; Status is &nbsp;
                   </span>
                   <>
                     {weather.list[0].main.aqi === 1 && <>Good</>}
@@ -81,43 +80,35 @@ const PollutionDetails = () => {
                     <u> Concentrations:</u>
                   </p>
                   <p>
-                    CO2:
-                    ...................................................
+                    CO2: ...................................................
                     <span>{weather.list[0].components.co}</span>
                   </p>
                   <p>
-                    NO :
-                    ...................................................
+                    NO : ...................................................
                     <span>{weather.list[0].components.no}</span>
                   </p>
                   <p>
-                    NO2:
-                    ...................................................
+                    NO2: ...................................................
                     <span>{weather.list[0].components.no2}</span>
                   </p>
                   <p>
-                    O3:
-                    ...................................................
+                    O3: ...................................................
                     <span>{weather.list[0].components.o3}</span>
                   </p>
                   <p>
-                    SO2:
-                    ..................................................
+                    SO2: ..................................................
                     <span>{weather.list[0].components.so2}</span>
                   </p>
                   <p>
-                    PM2.5:
-                    ..................................................
+                    PM2.5: ..................................................
                     <span>{weather.list[0].components.pm2_5}</span>
                   </p>
                   <p>
-                    PM10:
-                    .................................................
+                    PM10: .................................................
                     <span>{weather.list[0].components.pm10}</span>
                   </p>
                   <p>
-                    NH:
-                    .................................................
+                    NH: .................................................
                     <span>{weather.list[0].components.nh3}</span>
                   </p>
                 </div>
@@ -131,14 +122,18 @@ const PollutionDetails = () => {
                 <div className="error absolute">
                   <div className="invalid">
                     <p>Invalid Coordinates!</p>
-                    <p>{error}</p>
                   </div>
+                  <p>{error}</p>
                 </div>
               </div>
             </>
           )}
           <button
-            className="ptr btn-goback flex-column-centered"
+            className={
+              isLoading || isError || weather.length === 0
+                ? 'mt-50 ptr btn-goback flex-column-centered'
+                : 'ptr btn-goback flex-column-centered'
+            }
             onClick={handleGoBack}
             type="button"
           >

@@ -181,7 +181,7 @@ code {
 
 .sample-container {
   width: 100%;
-  height: 7rem;
+  padding: 0 1rem;
   background-color: #1d1d1d;
   color: #fff;
   padding-top: 5%;
@@ -240,4 +240,194 @@ code {
 
 .concentrations .title {
   margin-bottom: 1rem;
+}
+
+.loading {
+  position: absolute;
+  font-size: 40px;
+  font-weight: 600;
+  color: #fff;
+  right: 30%;
+  margin-top: 30%;
+}
+
+.dot-flashing {
+  margin-top: 40%;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #fff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+  content: "Loading";
+}
+
+.dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #fff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+.mt-50 {
+  margin-top: 40rem;
+}
+
+.error-container {
+  height: 100%;
+  width: 100%;
+}
+
+.error {
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-size: 40%;
+}
+
+.invalid {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("/public/images/error-2.png");
+  height: 40vh;
+  width: 80vw;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  right: -80%;
+  top: 20%;
+}
+
+.invalid p {
+  position: absolute;
+  bottom: 5%;
+  margin-top: 1rem;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: #fff;
+  }
+
+  50%,
+  100% {
+    background-color: rgba(152, 128, 255, 0.2);
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    height: auto;
+  }
+
+  .main-intro {
+    margin-top: 10%;
+  }
+
+  .main-intro h1 {
+    font-size: 43px;
+  }
+
+  .sub-intro {
+    font-size: 25px;
+  }
+
+  .intro-content {
+    font-size: 30px;
+  }
+
+  .coordinates input {
+    width: 6rem;
+    height: 3.5rem;
+    font-size: 35px;
+    padding-left: 0.1rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+
+  .sample-intro {
+    font-size: 35px;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+
+  .category-card {
+    flex-wrap: nowrap;
+    margin-bottom: 2rem;
+  }
+
+  .sample {
+    width: 80%;
+    padding-bottom: 2rem;
+  }
+
+  .sample-card .image img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  .aqis {
+    margin-bottom: 5px;
+  }
+
+  .aqi-status p {
+    font-size: 30px;
+    margin-left: 10rem;
+  }
+
+  .coord {
+    font-size: 40px;
+    font-weight: 500;
+    margin-left: 3rem;
+  }
+
+  .logo {
+    padding-left: 17rem;
+  }
+
+  .btn-goback {
+    margin-bottom: 10rem;
+  }
+
+  .invalid {
+    background-image: url("/public/images/error-2.png");
+    font-size: 30px;
+    color: #fff;
+    font-weight: 600;
+    position: absolute;
+    right: 5%;
+    top: 20%;
+  }
+
+  .invalid p {
+    position: absolute;
+    top: 0;
+  }
 }
