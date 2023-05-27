@@ -37,7 +37,7 @@
 
 ### Live Demo <a name="tech-stack"></a>
 
-> [Live demo](https://weather-app-9iv7.onrender.com/)
+> [Live demo](https://weather-app-u71l.onrender.com/)
 
 <details>
   <summary>Client</summary>
