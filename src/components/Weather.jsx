@@ -16,9 +16,9 @@ const Weather = () => {
   // useEffect(() => {
   //   dispatch(getWeathers(coords));
   // }, []);
-  useEffect(() => {
-    dispatch(getWeathers(coords));
-  }, [coords]);
+  // useEffect(() => {
+  //   dispatch(getWeathers(coords));
+  // }, [coords]);
 
   const topCoordinates = [
     { coordinates: [50, 50] },
@@ -27,7 +27,9 @@ const Weather = () => {
     { coordinates: [80, 80] },
   ];
 
-  function handleCoords(coords) {}
+  function handleCoords(coords) {
+    dispatch(getWeathers(coords));
+  }
 
   return (
     <>
@@ -57,14 +59,12 @@ const Weather = () => {
                       <button
                         className="see-pollution"
                         // onClick={() => console.log(coord.coordinates[0])}
-                        onClick={() =>
-                          dispatch(
-                            setCoords({
-                              lat: coord.coordinates[0],
-                              lon: coord.coordinates[1],
-                            })
-                          )
-                        }
+                        onClick={() => {
+                          handleCoords({
+                            lat: coord.coordinates[0],
+                            lon: coord.coordinates[1],
+                          });
+                        }}
                       >
                         Pollution Details
                       </button>
