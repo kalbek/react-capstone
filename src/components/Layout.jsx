@@ -3,8 +3,10 @@ import Navigation from './Navigation';
 
 const Layout = () => (
   <>
-    <Navigation />
-    <Outlet />
+    <div className="bg-primary">
+      <Navigation />
+      <Outlet />
+    </div>
   </>
 );
 

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home';
+import Weather from './components/Weather';
 import PollutionDetails from './components/PollutionDetails';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<Weather />} />
             <Route path="/pollution-details" element={<PollutionDetails />} />
           </Route>
         </Routes>

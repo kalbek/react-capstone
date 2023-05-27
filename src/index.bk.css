@@ -1,0 +1,476 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+}
+
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-get-poll {
+  width: 10rem;
+  outline: 2px solid black;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(236, 76, 138);
+}
+
+.temp-text p {
+  color: white;
+  font-size: 20px;
+}
+
+.logo img {
+  width: 55%;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-1 {
+  z-index: -1;
+}
+
+.z-2 {
+  z-index: -2;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.w-100 {
+  width: 100vw;
+}
+
+.h-100 {
+  height: 100vh;
+}
+
+.bgr {
+  background-color: red;
+}
+
+.ptr {
+  cursor: pointer;
+}
+
+.hero-image {
+  border-radius: 10% 10% 4% 4%;
+  overflow: hidden;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.pt-1 {
+  padding-top: 1rem;
+}
+
+.g-1-1 {
+  top: 12%;
+  left: 8%;
+}
+
+.g-1-2 {
+  top: 40%;
+  left: 2%;
+}
+
+.g-1-3 {
+  left: 8%;
+  bottom: 10%;
+}
+
+.g-2-1 {
+  top: 12%;
+  right: 8%;
+}
+
+.g-2-2 {
+  top: 40%;
+  right: 2%;
+}
+
+.g-2-3 {
+  bottom: 10%;
+  right: 8%;
+}
+
+.contents {
+  top: 15rem;
+  width: 17.8%;
+  height: 100%;
+  height: 9.5rem;
+  margin-left: 2px;
+  background: rgb(236, 76, 138);
+}
+
+.coordinate-control {
+  position: absolute;
+  height: 74%;
+  width: 30%;
+  border: 2px solid whitesmoke;
+  border-radius: 2%;
+  top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/public/images/cool-bg.jpg");
+}
+
+.top-apis h3,
+.custom-coord label {
+  font-size: 25px;
+  color: #003e81;
+  top: 8%;
+}
+
+.card {
+  top: 7%;
+  width: 99%;
+  height: 18%;
+  border: 2px solid white;
+  background-color: rgb(236, 76, 138);
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gap-p5 {
+  gap: 5px;
+}
+
+.custom-coord input,
+.custom-coord button {
+  width: 4rem;
+  height: 2.5rem;
+}
+
+.custom-coord input {
+  position: absolute;
+  font-size: 28px;
+}
+
+.gap-10 {
+  gap: 5rem;
+}
+
+.card p {
+  padding: 1rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: #003e81;
+}
+
+input::placeholder {
+  margin-left: 5px;
+  padding-left: 30%;
+}
+
+.see-pollution {
+  height: 140%;
+  border-color: transparent;
+  padding: 0 40px;
+  font-size: 20px;
+  color: #003e81;
+  margin-left: 1rem;
+  border: 1px solid #003e81;
+  border-radius: 5px;
+}
+
+.see-pollution:hover {
+  cursor: pointer;
+  border-color: #fff;
+  scale: 1.1;
+}
+
+.see-pollution * {
+  font-size: 18px;
+  float: left;
+}
+
+.go {
+  background-color: #58a72c;
+  color: #fff;
+  font-size: 20px;
+}
+
+.btn-goback {
+  background-color: #eb6e4b;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  bottom: 3rem;
+  right: 1rem;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 24px;
+  height: 4rem;
+  width: fit-content;
+}
+
+.details {
+  margin-top: 5rem;
+  width: 60vw;
+  height: 75vh;
+  border-radius: 10px;
+  background-image: url("/public/images/cool-bg.jpg");
+}
+
+.coords {
+  color: #003e81;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.invalid {
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  position: absolute;
+  right: 5%;
+  top: 20%;
+}
+
+.concentrations span {
+  color: #fff;
+}
+
+.concentrations {
+  font-size: 27px;
+}
+
+.concentrations .title {
+  font-size: 29px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.error-container {
+  height: 100%;
+  width: 100%;
+}
+
+.error {
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-image: url("/public/images/error-2.png");
+  background-size: 40%;
+  background-repeat: no-repeat;
+}
+
+.lat-long {
+  color: #003e81;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.lat-long span {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.aqi {
+  color: #003e81;
+  font-size: 30px;
+  font-weight: 600;
+  top: 0.5rem;
+  left: 1rem;
+}
+
+.aqi span {
+  color: #fff;
+}
+
+.date {
+  right: 0;
+  top: 0.4rem;
+  color: #fff;
+  font-size: 30px;
+}
+
+.go:hover {
+  scale: 1.2;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: #58a72c;
+  color: #fff;
+  font-size: 20px;
+}
+
+.custom-coord-title {
+  font-size: 25px;
+  color: #003e81;
+  font-weight: 700;
+  top: 8%;
+}
+
+.custom-card {
+  height: 12%;
+}
+
+.loading {
+  position: absolute;
+  font-size: 40px;
+  font-weight: 600;
+  color: #fff;
+  right: 30%;
+  margin-top: 30%;
+}
+
+.dot-flashing {
+  margin-top: 40%;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+  content: "Loading";
+}
+
+.dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: #9880ff;
+  }
+
+  50%,
+  100% {
+    background-color: rgba(152, 128, 255, 0.2);
+  }
+}
