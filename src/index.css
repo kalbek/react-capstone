@@ -241,7 +241,7 @@ code {
 
 .custom-coord input {
   position: absolute;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .gap-10 {
@@ -257,7 +257,7 @@ code {
 
 .see-pollution {
   width: 0 auto;
-  height: 25%;
+  height: 140%;
   border-color: transparent;
   padding: 0 40px;
   font-size: 20px;
@@ -269,6 +269,7 @@ code {
 
 .see-pollution:hover {
   cursor: pointer;
+  border-color: #fff;
   scale: 1.1;
 }
 

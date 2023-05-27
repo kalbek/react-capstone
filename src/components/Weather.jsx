@@ -1,16 +1,24 @@
 import weatherSlice from "../redux/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getWeathers } from "../redux/weatherSlice";
+import { NavLink } from "react-router-dom";
+import { setCoords } from "../redux/weatherSlice";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Weather = () => {
   const dispatch = useDispatch();
+  const [coor, setCoor] = useState("");
   const { weather } = useSelector((store) => store.weathers);
+  const { coords } = useSelector((store) => store.weathers);
   console.log("weathers: ", weather);
+  console.log("coords: ", coords);
+  // useEffect(() => {
+  //   dispatch(getWeathers(coords));
+  // }, []);
   useEffect(() => {
-    dispatch(getWeathers());
-  }, []);
+    dispatch(getWeathers(coords));
+  }, [coords]);
 
   const topCoordinates = [
     { coordinates: [50, 50] },
@@ -18,6 +26,9 @@ const Weather = () => {
     { coordinates: [70, 70] },
     { coordinates: [80, 80] },
   ];
+
+  function handleCoords(coords) {}
+
   return (
     <>
       <div className="flex-centered z-0">
@@ -42,7 +53,19 @@ const Weather = () => {
                         <p>X: {coord.coordinates[0]}</p>
                         <p>Y: {coord.coordinates[1]}</p>
                       </div>
-                      <button className="see-pollution">
+                      <NavLink to="/pollution-details"></NavLink>
+                      <button
+                        className="see-pollution"
+                        // onClick={() => console.log(coord.coordinates[0])}
+                        onClick={() =>
+                          dispatch(
+                            setCoords({
+                              lat: coord.coordinates[0],
+                              lon: coord.coordinates[1],
+                            })
+                          )
+                        }
+                      >
                         Pollution Details
                       </button>
                     </div>
@@ -60,9 +83,11 @@ const Weather = () => {
                         Y: &nbsp;
                         <input id="y" type="text" />
                       </label>
-                      <button className="ptr go see-pollution flex-column-centered">
-                        GO
-                      </button>
+                      <NavLink to="/pollution-details">
+                        <button className="ptr go see-pollution flex-column-centered">
+                          GO
+                        </button>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
