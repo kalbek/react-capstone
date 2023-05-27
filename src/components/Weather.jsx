@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-import { useState } from "react";
-import { getWeathers } from "../redux/weatherSlice";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { getWeathers } from '../redux/weatherSlice';
 
 const Weather = () => {
   const dispatch = useDispatch();
@@ -10,10 +11,10 @@ const Weather = () => {
   const [yCoor, setYCoor] = useState();
 
   const pinnedCoordinates = [
-    { x: 50, y: 50 },
-    { x: 60, y: 60 },
-    { x: 70, y: 70 },
-    { x: 80, y: 80 },
+    { id: uuidv4(), x: 50, y: 50 },
+    { id: uuidv4(), x: 60, y: 60 },
+    { id: uuidv4(), x: 70, y: 70 },
+    { id: uuidv4(), x: 80, y: 80 },
   ];
 
   function handleCoords(coords) {
@@ -36,11 +37,17 @@ const Weather = () => {
                 <div className="top-apis ">
                   <h3>Pinned Coordinates</h3>
                 </div>
-                {pinnedCoordinates.map((coord, index) => (
-                  <div className="card flex-column" key={index}>
+                {pinnedCoordinates.map((coord) => (
+                  <div className="card flex-column" key={coord.id}>
                     <div className="flex">
-                      <p>X:{coord.x}</p>
-                      <p>Y:{coord.y}</p>
+                      <p>
+                        X:
+                        {coord.x}
+                      </p>
+                      <p>
+                        Y:
+                        {coord.y}
+                      </p>
                     </div>
                     <NavLink
                       to="/pollution-details"

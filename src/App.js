@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import PollutionDetails from "./components/PollutionDetails";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import PollutionDetails from './components/PollutionDetails';
 
 function App() {
-  console.log("hey there");
   return (
     <div>
       <BrowserRouter>
