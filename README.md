@@ -21,15 +21,19 @@
 - [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
-# 📖 React Capstone Project <a name="about-project"></a>
+# 📖 (Web-App) React Capstone Project <a name="about-project"></a>
 
-**SReact Capstone Project** is a React-Redux Group project at microverse
+**(Web-App) React Capstone Project** is a React-Redux Group project at microverse
 
-## 🛠 Built With <a name="built-with">ReactJs, JSX</a>
+## 🛠 Built With <a name="built-with">React, Redux, ReduxThunk, ReactTestingLibrary, JSX, CSS</a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
 > ReactJS, JSX, ReactRouter, Redux, ReduxThunk, React Testing Library
+
+### Live Demo <a name="tech-stack"></a>
+
+> [Live demo](https://weather-app-9iv7.onrender.com/)
 
 <details>
   <summary>Client</summary>
@@ -83,6 +87,7 @@ Install this project using the cloned repo or download and use the files to your
 ### Deployment
 
 You can deploy this project through Github Pages
+This project is deployed on Render
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,6 +127,7 @@ If you like this project give a star to this repositiory.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
+- I would like to acknowledge [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio?isa0=1) for the design guidlines which i followed in this project. 
 
 - I would also like to thank Microverse for the guidance they made all the way up to this point.
 
