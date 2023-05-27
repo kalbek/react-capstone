@@ -22,7 +22,7 @@ const PollutionDetails = () => {
     <>
       <div className="main bg-primary flex-column-centered">
         <div className="main-intro flex-column-centered p-1 mt-30">
-          {isSuccess && (
+          {isLoading && (
             <>
               <div className="loading flex-column-centered">
                 <div className="flex">
