@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,8 +12,8 @@ import {
 const Weather = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [xCoor, setXCoor] = useState(0);
-  const [yCoor, setYCoor] = useState(0);
+  const [xCoor, setXCoor] = useState('');
+  const [yCoor, setYCoor] = useState('');
 
   const sampleCoordinates = [
     { id: uuidv4(), x: 40, y: 40 },
@@ -31,7 +31,6 @@ const Weather = () => {
   }, [dispatch]);
 
   function handleCoords(coords) {
-    console.log('koor: ', coords);
     dispatch(getWeathers(coords));
     const navigateObject = {
       type: 'NAVIGATE',
@@ -97,7 +96,8 @@ const Weather = () => {
             </div>
 
             {/* button to get data */}
-            <div
+            <button
+              type="button"
               className="get-pollution"
               onClick={() => {
                 handleCoords({
@@ -107,53 +107,55 @@ const Weather = () => {
               }}
             >
               Get pollution data
-            </div>
+            </button>
 
             <div className="intro-content sample-intro">Sample Coordinates</div>
           </div>
           {/* display sample data form api. */}
           <div className="flex-column-start w-100">
             {sampleAQIData.map((data, index) => (
-              <div
-                key={data.id}
-                onClick={() => {
-                  handleCoords({
-                    lat: data.coord.lat,
-                    lon: data.coord.lon,
-                  });
-                }}
-                className="sample-container"
-              >
-                {/* sample aqi card */}
-                <div className="aqi-good sample-card">
-                  <div className="flex">
-                    <div className="image">
-                      <img
-                        src={`/images/small-earth-${index + +1}.jpg`}
-                        alt=""
-                      />
-                    </div>
-                    <div className="flex-column aqis">
-                      <div className="aqi-status">
-                        <p>
-                          {' '}
-                          Air Quality Index
-                          {data.list[0].main.aqi}
-                        </p>
+              <div key={data.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleCoords({
+                      lat: data.coord.lat,
+                      lon: data.coord.lon,
+                    });
+                  }}
+                  className="sample-container"
+                >
+                  {/* sample aqi card */}
+                  <div className="aqi-good sample-card">
+                    <div className="flex">
+                      <div className="image">
+                        <img
+                          src={`/images/small-earth-${index + +1}.jpg`}
+                          alt=""
+                        />
                       </div>
-                      <div className="coord">
-                        <p>
-                          [
-                          {data.coord.lon}
-                          ,
-                          {' '}
-                          {data.coord.lat}
-                          ]
-                        </p>
+                      <div className="flex-column aqis">
+                        <div className="aqi-status">
+                          <p>
+                            {' '}
+                            Air Quality Index
+                            {data.list[0].main.aqi}
+                          </p>
+                        </div>
+                        <div className="coord">
+                          <p>
+                            [
+                            {data.coord.lon}
+                            ,
+                            {' '}
+                            {data.coord.lat}
+                            ]
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </button>
               </div>
             ))}
           </div>

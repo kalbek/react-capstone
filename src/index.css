@@ -147,14 +147,10 @@ code {
 .get-pollution {
   width: auto;
   background-color: #fff;
-  border-radius: 10%;
   border: 1px solid transparent;
   margin-top: 1rem;
   border-radius: 15px;
   padding-bottom: 0.3rem;
-}
-
-.get-pollution a {
   text-decoration: none;
   color: #161fc8;
   font-size: 25px;
@@ -171,7 +167,6 @@ code {
   width: 100%;
   height: 7rem;
   background-color: #1d1d1d;
-  /* margin-top: 1rem; */
   color: #fff;
   padding-top: 5%;
 }
@@ -199,7 +194,7 @@ code {
   margin-top: 5px;
 }
 
-.flex-column  {
+.flex-column {
   display: flex;
   flex-direction: column;
 }
@@ -208,3 +203,26 @@ code {
   width: 100%;
 }
 
+.date,
+.aqi {
+  margin-bottom: 1rem;
+}
+
+.btn-goback {
+  background-color: #eb6e4b;
+  padding: 0.5rem 1rem;
+  bottom: 3rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  right: 1rem;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 24px;
+  height: 3rem;
+  width: fit-content;
+}
+
+.concentrations .title {
+  margin-bottom: 1rem;
+}
