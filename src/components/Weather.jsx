@@ -1,29 +1,15 @@
-import weatherSlice from "../redux/weatherSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getWeathers } from "../redux/weatherSlice";
-import { NavLink, useNavigate } from "react-router-dom";
-import { setCoords } from "../redux/weatherSlice";
+import { NavLink } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Weather = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [xCoor, setXCoor] = useState();
   const [yCoor, setYCoor] = useState();
 
-  const { weather } = useSelector((store) => store.weathers);
-  const { coords } = useSelector((store) => store.weathers);
-  console.log("weathers: ", weather);
-  console.log("coords: ", coords);
-  // useEffect(() => {
-  //   dispatch(getWeathers(coords));
-  // }, []);
-  // useEffect(() => {
-  //   dispatch(getWeathers(coords));
-  // }, [coords]);
-
-  const topCoordinates = [
+  const pinnedCoordinates = [
     { coordinates: [50, 50] },
     { coordinates: [60, 60] },
     { coordinates: [70, 70] },
@@ -31,7 +17,6 @@ const Weather = () => {
   ];
 
   function handleCoords(coords) {
-    console.log("yey");
     dispatch(getWeathers(coords));
   }
 
@@ -40,7 +25,6 @@ const Weather = () => {
       <div className="flex-centered z-0">
         <div className="flex-column">
           <div className="phone flex-centered">
-            {/* <img src="/images/model-phones.png" alt="phone image" /> */}
             <div className="group-1 flex-column-centered gap-1 absolutea">
               <div className="hero-image g-1-1 absolute flex-column">
                 <img src="/images/temp.jpg" alt="" />
@@ -48,21 +32,19 @@ const Weather = () => {
                   <p>Get your weather data instantly.</p>
                 </div>
               </div>
-              <div className="coordinate-control relative gap-p5">
+              <div className="coordinate-control z-100 relative gap-p5">
                 <div className="top-apis ">
-                  <h3>Top Coordinates</h3>
+                  <h3>Pinned Coordinates</h3>
                 </div>
-                {topCoordinates.map((coord) => (
+                {pinnedCoordinates.map((coord) => (
                   <>
                     <div className="card flex-column">
                       <div className="flex">
                         <p>X: {coord.coordinates[0]}</p>
                         <p>Y: {coord.coordinates[1]}</p>
                       </div>
-                      <NavLink to="/pollution-details"></NavLink>
-                      <button
-                        className="see-pollution"
-                        // onClick={() => console.log(coord.coordinates[0])}
+                      <NavLink
+                        to="/pollution-details"
                         onClick={() => {
                           handleCoords({
                             lat: coord.coordinates[0],
@@ -70,8 +52,10 @@ const Weather = () => {
                           });
                         }}
                       >
-                        Pollution Details
-                      </button>
+                        <button className="see-pollution">
+                          Pollution Details
+                        </button>
+                      </NavLink>
                     </div>
                   </>
                 ))}
@@ -104,7 +88,6 @@ const Weather = () => {
                             lat: xCoor,
                             lon: yCoor,
                           });
-                          // dispatch(navigate("/pollution-details"));
                         }}
                       >
                         <button className="ptr go see-pollution flex-column-centered">
@@ -121,7 +104,6 @@ const Weather = () => {
                   <p>Absolutely ture!</p>
                 </div>
               </div>
-              {/*  */}
               <div className="hero-image g-1-3 absolute flex-column">
                 <img src="/images/sunny-cloud.jpg" alt="" />
                 <div className="temp-text">

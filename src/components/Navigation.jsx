@@ -10,16 +10,7 @@ const Navigation = () => {
               <img src="/images/OpenWeatherLogo.png" alt="" />
             </div>
           </NavLink>
-          <div className="menus">
-            <div className="flex gap-1">
-              <NavLink to="/">
-                <div className="menu ptr"></div>
-              </NavLink>
-              <NavLink to="/pollution-details">
-                <div className="menu ptr">Pollution Details.</div>
-              </NavLink>
-            </div>
-          </div>
+          <div>Your one stop weather service.</div>
         </div>
       </nav>
     </>

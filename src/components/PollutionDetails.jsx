@@ -1,42 +1,136 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getWeathers } from "../redux/weatherSlice";
-import { setCoords } from "../redux/weatherSlice";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PollutionDetails = () => {
-  const { weather, coords, isLoading, isSuccess } = useSelector(
+  const navigate = useNavigate();
+  const { weather, isLoading, isSuccess, isError, error } = useSelector(
     (store) => store.weathers
   );
-  console.log("hey: ", weather);
-  console.log("loading: ", isLoading);
-  console.log("success: ", isSuccess);
-  console.log("coords: ", coords);
+
   return (
     <>
-      {isLoading && <>Loading ....</>}
-      {isSuccess && (
-        <>
-          <div className="coords">
-            coords:
-            <p>long: {weather.coord.lon}</p>
-            <p>lat: {weather.coord.lat}</p>
-          </div>
-        </>
-      )}
-      {isSuccess &&
-        weather.list.map((lists) => (
+      <div className="details relative">
+        {isLoading && (
           <>
-            <div className="flex-column-centered">
-              <div className="aqi">aqi: {lists.main.aqi}</div>
-              <div className="date">date: {lists.dt}</div>
-              <p>CO2: {lists.components.co}</p>
-              <p>CO2: {lists.components.no}</p>
-              <p>CO2: {lists.components.no2}</p>
-              <p>CO2: {lists.components.o3}</p>
-              <p>CO2: {lists.components.so2}</p>
+            <div className="loading flex-column-centered">
+              <div className="flex">
+                <div className="dot-flashing"></div>
+              </div>
             </div>
           </>
-        ))}
+        )}
+        {isSuccess && (
+          <>
+            <div className="coordiantes flex-column-centered">
+              <p className="coords">Coordinates:</p>
+              <div className="flex gap-1 lat-long">
+                <p>
+                  Latitude: <span> {weather.coord.lat}</span>
+                </p>
+                <p>
+                  Longitude:<span> {weather.coord.lon}</span>
+                </p>
+              </div>
+            </div>
+          </>
+        )}
+        {isSuccess &&
+          weather.list.map((lists) => (
+            <>
+              <div className="flex-column-centered">
+                <div className="card">
+                  <div className="aqi absolute">
+                    AQI: <span> {lists.main.aqi} &nbsp;</span>
+                    <>
+                      {lists.main.aqi === 1
+                        ? "Good"
+                        : lists.main.aqi === 2
+                        ? "Fair"
+                        : lists.main.aqi === 3
+                        ? "Moderate"
+                        : lists.main.aqi === 4
+                        ? "Poor"
+                        : "Very Poor"}
+                    </>
+                  </div>
+                  <div className="date absolute">
+                    {new Date(lists.dt * 1000).toDateString()}
+                  </div>
+                  <div className="concentrations">
+                    <p className="title">
+                      <u> Concentrations:</u>
+                    </p>
+                    <p>
+                      CO2:
+                      ....................................................................
+                      <span>{lists.components.co}</span>
+                    </p>
+                    <p>
+                      NO:
+                      .....................................................................
+                      <span>{lists.components.no}</span>
+                    </p>
+                    <p>
+                      NO<sub>2</sub>:
+                      .........................................................................
+                      <span>{lists.components.no2}</span>
+                    </p>
+                    <p>
+                      O<sub>3</sub>:
+                      .........................................................................
+                      <span>{lists.components.o3}</span>
+                    </p>
+                    <p>
+                      SO<sub>2</sub>:
+                      .........................................................................
+                      <span>{lists.components.so2}</span>
+                    </p>
+                    <p>
+                      PM<sub>2.5</sub>:
+                      .........................................................................
+                      <span>{lists.components.pm2_5}</span>
+                    </p>
+                    <p>
+                      PM<sub>10</sub>:
+                      .........................................................................
+                      <span>{lists.components.pm10}</span>
+                    </p>
+                    <p>
+                      NH<sub>3</sub>:
+                      .........................................................................
+                      <span>{lists.components.nh3}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ))}
+
+        {isError && (
+          <>
+            <div className="error-container relative">
+              <div className="error absolute">
+                <div className="invalid">
+                  <p>Invalid Coordinates!</p>
+                  <p>{error}</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        <NavLink
+          to="/deta"
+          style={{ textDecoration: "none" }}
+          onClick={() => console.log("yee")}
+        ></NavLink>
+        <button
+          className="ptr btn-goback flex-column-centered"
+          onClick={() => navigate("/")}
+        >
+          Go Back
+        </button>
+      </div>
     </>
   );
 };
