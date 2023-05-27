@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { getWeathers } from "../redux/weatherSlice";
 import { NavLink } from "react-router-dom";
 
 import { useState } from "react";
+import { getWeathers } from "../redux/weatherSlice";
 
 const Weather = () => {
   const dispatch = useDispatch();
@@ -10,10 +10,10 @@ const Weather = () => {
   const [yCoor, setYCoor] = useState();
 
   const pinnedCoordinates = [
-    { coordinates: [50, 50] },
-    { coordinates: [60, 60] },
-    { coordinates: [70, 70] },
-    { coordinates: [80, 80] },
+    { x: 50, y: 50 },
+    { x: 60, y: 60 },
+    { x: 70, y: 70 },
+    { x: 80, y: 80 },
   ];
 
   function handleCoords(coords) {
@@ -36,47 +36,49 @@ const Weather = () => {
                 <div className="top-apis ">
                   <h3>Pinned Coordinates</h3>
                 </div>
-                {pinnedCoordinates.map((coord) => (
-                  <>
-                    <div className="card flex-column">
-                      <div className="flex">
-                        <p>X: {coord.coordinates[0]}</p>
-                        <p>Y: {coord.coordinates[1]}</p>
-                      </div>
-                      <NavLink
-                        to="/pollution-details"
-                        onClick={() => {
-                          handleCoords({
-                            lat: coord.coordinates[0],
-                            lon: coord.coordinates[1],
-                          });
-                        }}
-                      >
-                        <button className="see-pollution">
-                          Pollution Details
-                        </button>
-                      </NavLink>
+                {pinnedCoordinates.map((coord, index) => (
+                  <div className="card flex-column" key={index}>
+                    <div className="flex">
+                      <p>X:{coord.x}</p>
+                      <p>Y:{coord.y}</p>
                     </div>
-                  </>
+                    <NavLink
+                      to="/pollution-details"
+                      onClick={() => {
+                        handleCoords({
+                          lat: coord.x,
+                          lon: coord.y,
+                        });
+                      }}
+                    >
+                      <button
+                        id="btn-po"
+                        className="see-pollution"
+                        type="button"
+                      >
+                        Pollution Details
+                      </button>
+                    </NavLink>
+                  </div>
                 ))}
                 <p className="custom-coord-title">Custom Coordinates</p>
                 <div className="card custom-card flex-column-centered">
                   <div className="flex-column-centered custom-coord">
                     <div className="flex gap-10 relative">
                       <label htmlFor="x">
-                        X: &nbsp;
                         <input
                           value={xCoor}
                           onChange={(e) => setXCoor(e.target.value)}
+                          placeholder="X"
                           id="x"
                           type="text"
                         />
                       </label>
                       <label htmlFor="x">
-                        Y: &nbsp;
                         <input
                           value={yCoor}
                           onChange={(e) => setYCoor(e.target.value)}
+                          placeholder="Y"
                           id="y"
                           type="text"
                         />
@@ -90,7 +92,10 @@ const Weather = () => {
                           });
                         }}
                       >
-                        <button className="ptr go see-pollution flex-column-centered">
+                        <button
+                          className="ptr go see-pollution flex-column-centered"
+                          type="button"
+                        >
                           GO
                         </button>
                       </NavLink>

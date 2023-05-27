@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   weather: [],
@@ -7,23 +7,21 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
-  error: "",
+  error: '',
 };
 
-export const getWeathers = createAsyncThunk("weather", async (coord) => {
+export const getWeathers = createAsyncThunk('weather', async (coord) => {
   const response = await axios(
-    `http://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.lat}&lon=${coord.lon}&appid=25df0065e0f7bc95dbc36a884ef43ee6`
+    `http://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.lat}&lon=${coord.lon}&appid=25df0065e0f7bc95dbc36a884ef43ee6`,
   );
   return response.data;
 });
 
 const weatherSlice = createSlice({
-  name: "weathers",
+  name: 'weathers',
   initialState,
   reducers: {
-    setCoords: (state, action) => {
-      return { ...state, coords: action.payload };
-    },
+    setCoords: (state, action) => ({ ...state, coords: action.payload }),
   },
   extraReducers: (builder) => {
     builder.addCase(getWeathers.pending, (state) => {

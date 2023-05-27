@@ -1,14 +1,12 @@
-import React from "react";
-import Weather from "../components/Weather";
+import React from 'react';
+import Weather from '../components/Weather';
 
-const Home = () => {
-  return (
-    <>
-      <div className="hero">
-        <Weather />
-      </div>
-    </>
-  );
-};
+const Home = () => (
+  <>
+    <div className="hero">
+      <Weather />
+    </div>
+  </>
+);
 
 export default Home;

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Pollutants from "./pages/Pollutants";
+import PollutionDetails from "./components/PollutionDetails";
 
 function App() {
   console.log("hey there");
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route index path="/" element={<Home />} />
-            <Route path="/pollution-details" element={<Pollutants />} />
+            <Route path="/pollution-details" element={<PollutionDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>

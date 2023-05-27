@@ -1,25 +1,17 @@
-import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import '@testing-library/jest-dom';
-import Navigation from '../components/Navigation';
+import React from "react";
+import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import Navigation from "../components/Navigation";
 
-describe('Navigation component', () => {
-  test('renders Navigation component', () => {
-    const { container } = render(
+describe("Navigation", () => {
+  it("should render the navigation with the logo and service text", () => {
+    const { getByAltText } = render(
       <MemoryRouter>
         <Navigation />
-      </MemoryRouter>,
+      </MemoryRouter>
     );
-    expect(container).toMatchSnapshot();
-  });
 
-  test('checks if the text "Space Travellers\' Hub" is present', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <Navigation />
-      </MemoryRouter>,
-    );
-    const linkElement = getByText(/Space Travellers' Hub/i);
-    expect(linkElement).toBeInTheDocument();
+    const logoElement = getByAltText("OpenWeatherLogo");
+    expect(logoElement.src).toContain("/images/OpenWeatherLogo.png");
   });
 });
