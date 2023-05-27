@@ -1,18 +1,22 @@
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { getWeathers, getSampleData } from "../redux/weatherSlice";
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  getWeathers,
+  getSampleData,
+  clearSampleAqi,
+} from '../redux/weatherSlice';
 
 const Weather = () => {
   const dispatch = useDispatch();
-  const [xCoor, setXCoor] = useState();
-  const [yCoor, setYCoor] = useState();
+  const navigate = useNavigate();
+  const [xCoor, setXCoor] = useState(0);
+  const [yCoor, setYCoor] = useState(0);
 
   const sampleCoordinates = [
-    { id: uuidv4(), x: 50, y: 50 },
+    { id: uuidv4(), x: 40, y: 40 },
     { id: uuidv4(), x: 60, y: 60 },
     { id: uuidv4(), x: 70, y: 70 },
     { id: uuidv4(), x: 80, y: 80 },
@@ -20,14 +24,20 @@ const Weather = () => {
   const { sampleAQIData } = useSelector((store) => store.weathers);
 
   useEffect(() => {
+    dispatch(clearSampleAqi());
     sampleCoordinates.forEach((coord) => {
       dispatch(getSampleData(coord));
     });
-    console.log("saqK: ", sampleAQIData);
   }, [dispatch]);
 
   function handleCoords(coords) {
+    console.log('koor: ', coords);
     dispatch(getWeathers(coords));
+    const navigateObject = {
+      type: 'NAVIGATE',
+      payload: navigate('/pollution-details'),
+    };
+    dispatch(navigateObject);
   }
 
   return (
@@ -67,111 +77,85 @@ const Weather = () => {
             </div>
             <div className="coordinates">
               <div className="flex gap-1 mt-1">
-                <input type="text" />
-                <input type="text" />
+                <label htmlFor="x">
+                  <input
+                    value={xCoor}
+                    onChange={(e) => setXCoor(Number(e.target.value))}
+                    id="x"
+                    type="number"
+                  />
+                </label>
+                <label htmlFor="x">
+                  <input
+                    value={yCoor}
+                    onChange={(e) => setYCoor(Number(e.target.value))}
+                    id="y"
+                    type="number"
+                  />
+                </label>
               </div>
             </div>
+
             {/* button to get data */}
-            <div className="get-pollution">
-              <a href="/pollution-details">Get pollution data</a>
+            <div
+              className="get-pollution"
+              onClick={() => {
+                handleCoords({
+                  lat: xCoor,
+                  lon: yCoor,
+                });
+              }}
+            >
+              Get pollution data
             </div>
+
             <div className="intro-content sample-intro">Sample Coordinates</div>
           </div>
+          {/* display sample data form api. */}
           <div className="flex-column-start w-100">
-            <div className="sample-container">
-              {/* sample aqi card */}
-              <div className="aqi-good sample-card">
-                <div className="flex">
-                  <div className="image">
-                    <img src="/images/small-earth-1.jpg" alt="" />
-                  </div>
-                  <div className="flex-column aqis">
-                    <div className="aqi-status">
-                      <p>Good Air Quality Index</p>
+            {sampleAQIData.map((data, index) => (
+              <div
+                key={data.id}
+                onClick={() => {
+                  handleCoords({
+                    lat: data.coord.lat,
+                    lon: data.coord.lon,
+                  });
+                }}
+                className="sample-container"
+              >
+                {/* sample aqi card */}
+                <div className="aqi-good sample-card">
+                  <div className="flex">
+                    <div className="image">
+                      <img
+                        src={`/images/small-earth-${index + +1}.jpg`}
+                        alt=""
+                      />
                     </div>
-                    <div className="coord">
-                      <p>[50, 50]</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* second sample card */}
-            <div className="sample-container">
-              {/* sample aqi card */}
-              <div className="aqi-good sample-card">
-                <div className="flex">
-                  <div className="image">
-                    <img src="/images/small-earth-2.jpg" alt="" />
-                  </div>
-                  <div className="flex-column aqis">
-                    <div className="aqi-status">
-                      <p>Fair Air Quality Index</p>
-                    </div>
-                    <div className="coord">
-                      <p>[50, 50]</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* third sample card */}
-            <div className="sample-container">
-              {/* sample aqi card */}
-              <div className="aqi-good sample-card">
-                <div className="flex">
-                  <div className="image">
-                    <img src="/images/small-earth-3.jpg" alt="" />
-                  </div>
-                  <div className="flex-column aqis">
-                    <div className="aqi-status">
-                      <p>Moderate Air Quality Index</p>
-                    </div>
-                    <div className="coord">
-                      <p>[50, 50]</p>
+                    <div className="flex-column aqis">
+                      <div className="aqi-status">
+                        <p>
+                          {' '}
+                          Air Quality Index
+                          {data.list[0].main.aqi}
+                        </p>
+                      </div>
+                      <div className="coord">
+                        <p>
+                          [
+                          {data.coord.lon}
+                          ,
+                          {' '}
+                          {data.coord.lat}
+                          ]
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* fourth sample card */}
-            <div className="sample-container">
-              {/* sample aqi card */}
-              <div className="aqi-good sample-card">
-                <div className="flex">
-                  <div className="image">
-                    <img src="/images/small-earth-4.jpg" alt="" />
-                  </div>
-                  <div className="flex-column aqis">
-                    <div className="aqi-status">
-                      <p>Poor Air Quality Index</p>
-                    </div>
-                    <div className="coord">
-                      <p>[50, 50]</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* fifth sample card */}
-            <div className="sample-container">
-              {/* sample aqi card */}
-              <div className="aqi-good sample-card">
-                <div className="flex">
-                  <div className="image">
-                    <img src="/images/small-earth-5.jpg" alt="" />
-                  </div>
-                  <div className="flex-column aqis">
-                    <div className="aqi-status">
-                      <p>Very Poor Air Quality Index</p>
-                    </div>
-                    <div className="coord">
-                      <p>[50, 50]</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </>
